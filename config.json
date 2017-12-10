@@ -1,0 +1,5 @@
+{
+  "batch_cmd": "git",
+  "ignore_paths": [".git"],
+  "reg_exp": "(^\\.git$|^\\.DS_Store)"
+}
