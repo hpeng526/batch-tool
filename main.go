@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"regexp"
 	"strings"
+	"path/filepath"
 )
 
 var config *Config
@@ -61,10 +62,13 @@ func handleErr(err error) {
 }
 
 func init() {
-	c, err := os.Open("./config.json")
+	f, _ := exec.LookPath(os.Args[0])
+	cp, _ := filepath.Abs(f)
+	configFile := filepath.Join(filepath.Dir(cp), "config.json")
+	c, err := os.Open(configFile)
 	defer c.Close()
 	if os.IsNotExist(err) {
-		log.Fatalf("config.json is not exist, please set up first")
+		log.Fatalf("%s is not exist, please set up first", configFile)
 	}
 	handleErr(err)
 	decoder := json.NewDecoder(c)

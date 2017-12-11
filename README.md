@@ -2,7 +2,7 @@
 
 ### Why?
 
-1. I want exec some command in sub dirs
+1. I want to exec some command in sub dirs
 2. And ignore specified directory
 
 ### How?
