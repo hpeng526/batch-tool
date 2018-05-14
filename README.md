@@ -15,10 +15,13 @@ go get github.com/hpeng526/batch-tool
 
 ```json
 {
-  "batch_cmd": "git",
   "ignore_paths": [".git"],
   "reg_exp": "(^\\.git$|^\\.DS_Store)"
 }
+```
+
+```bash
+batch-tool git pull
 ```
 
 * `ignore_paths` is fully-matching

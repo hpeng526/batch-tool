@@ -9,22 +9,29 @@ import (
 	"regexp"
 	"strings"
 	"path/filepath"
+	"fmt"
 )
 
 var config *Config
 
 func main() {
 	parent, _ := os.Getwd()
+	if len(os.Args) < 2 {
+		fmt.Printf("Usage: \n\tbatch-tool [cmd] [args]\n")
+		return
+	}
 	log.Printf("exec in path: %s\n", parent)
-	log.Printf("args is: %s\n", os.Args[1:])
-	gitArgs := os.Args[1:]
+	log.Printf("name is: %s\n", os.Args[1])
+	log.Printf("args is: %s\n", os.Args[2:])
+	cmdName := os.Args[1]
+	cmdArgs := os.Args[2:]
 	dirs, err := ioutil.ReadDir(parent)
 	handleErr(err)
 	for _, dir := range dirs {
 		if dir.IsDir() {
 			if !isIgnore(dir.Name()) {
 				log.Printf("working dir: %s\n", dir.Name())
-				cmd := exec.Command(config.BatchCmd, gitArgs...)
+				cmd := exec.Command(cmdName, cmdArgs...)
 				cmd.Dir = parent + string(os.PathSeparator) + dir.Name()
 				cmd.Stdout = os.Stdout
 				cmd.Stderr = os.Stderr
