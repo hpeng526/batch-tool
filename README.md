@@ -1,5 +1,7 @@
 # batch tool
 
+[![Build Status](https://travis-ci.org/hpeng526/batch-tool.svg?branch=master)](https://travis-ci.org/hpeng526/batch-tool)
+
 ### Why?
 
 1. I want to exec some command in sub dirs
